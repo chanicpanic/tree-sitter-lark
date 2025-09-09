@@ -1,0 +1,442 @@
+==========
+Empty Rule
+==========
+
+empty:
+
+---
+
+(source_file
+  (rule
+    (RULE)))
+
+================
+Prioritized Rule
+================
+
+first.1:
+
+---
+
+(source_file
+  (rule
+    (RULE)
+    (priority
+      (NUMBER))))
+
+=========================
+Negative Prioritized Rule
+=========================
+
+last.-42:
+
+---
+
+(source_file
+  (rule
+    (RULE)
+    (priority
+      (NUMBER))))
+
+============
+Inlined Rule
+============
+
+_hidden:
+
+---
+
+(source_file
+  (rule
+    (RULE)))
+
+==========================
+Conditionally Inlined Rule
+==========================
+
+?sometimes:
+
+---
+
+(source_file
+  (rule
+    (RULE_MODIFIERS)
+    (RULE)))
+
+===========
+Pinned Rule
+===========
+
+!pinned:
+
+---
+
+(source_file
+  (rule
+    (RULE_MODIFIERS)
+    (RULE)))
+
+===================================
+Conditionally Inlined Pinned Rule 1
+===================================
+
+!?pinned:
+
+---
+
+(source_file
+  (rule
+    (RULE_MODIFIERS)
+    (RULE)))
+
+===================================
+Conditionally Inlined Pinned Rule 2
+===================================
+
+?!pinned:
+
+---
+
+(source_file
+  (rule
+    (RULE_MODIFIERS)
+    (RULE)))
+
+==============
+Templated Rule
+==============
+
+template{p1, p2}:
+
+---
+
+(source_file
+  (rule
+    (RULE)
+    (rule_params
+      (RULE)
+      (RULE))))
+
+=========
+Rule Rule
+=========
+
+start: hello
+
+---
+
+(source_file
+  (rule
+    (RULE)
+    (expansions
+      (alias
+        (expr
+          (value
+            (RULE)))))))
+
+=============
+Terminal Rule
+=============
+
+start: HELLO
+
+---
+
+(source_file
+  (rule
+    (RULE)
+    (expansions
+      (alias
+        (expr
+          (value
+            (TERMINAL)))))))
+
+===========
+String Rule
+===========
+
+start: "hello"
+
+---
+
+(source_file
+  (rule
+    (RULE)
+    (expansions
+      (alias
+        (expr
+          (literal
+            (STRING)))))))
+
+==========
+Regex Rule
+==========
+
+start: /hello/
+
+---
+
+(source_file
+  (rule
+    (RULE)
+    (expansions
+      (alias
+        (expr
+          (literal
+            (REGEXP)))))))
+
+============
+Aliased Rule
+============
+
+start: "hello" | "world" -> world
+
+---
+
+(source_file
+  (rule
+    (RULE)
+    (expansions
+      (alias
+        (expr
+          (literal
+            (STRING))))
+      (alias
+        (expr
+          (literal
+            (STRING)))
+        (RULE)))))
+
+=======================
+Multi-line Aliased Rule
+=======================
+
+start: "hello"
+  | "world" -> world
+
+---
+
+(source_file
+  (rule
+    (RULE)
+    (expansions
+      (alias
+        (expr
+          (literal
+            (STRING))))
+      (alias
+        (expr
+          (literal
+            (STRING)))
+        (RULE)))))
+
+=============
+Optional Atom
+=============
+
+maybe: (a b)?
+
+---
+
+(source_file
+  (rule
+    (RULE)
+    (expansions
+      (alias
+        (expr
+          (atom
+            (expansions
+              (alias
+                (expr
+                  (value
+                    (RULE)))
+                (expr
+                  (value
+                    (RULE))))))
+          (OP))))))
+
+========================
+Optionally Repeated Atom
+========================
+
+repeat: (zero or one)*
+
+---
+
+(source_file
+  (rule
+    (RULE)
+    (expansions
+      (alias
+        (expr
+          (atom
+            (expansions
+              (alias
+                (expr
+                  (value
+                    (RULE)))
+                (expr
+                  (value
+                    (RULE)))
+                (expr
+                  (value
+                    (RULE))))))
+          (OP))))))
+
+=============
+Repeated Atom
+=============
+
+repeat: (at "least" one)*
+
+---
+
+(source_file
+  (rule
+    (RULE)
+    (expansions
+      (alias
+        (expr
+          (atom
+            (expansions
+              (alias
+                (expr
+                  (value
+                    (RULE)))
+                (expr
+                  (literal
+                    (STRING)))
+                (expr
+                  (value
+                    (RULE))))))
+          (OP))))))
+
+======================
+Constant Repeated Atom
+======================
+
+five: /A/~5
+
+---
+
+(source_file
+  (rule
+    (RULE)
+    (expansions
+      (alias
+        (expr
+          (literal
+            (REGEXP))
+          (NUMBER))))))
+
+===================
+Range Repeated Atom
+===================
+
+four_to_six: b~4..6
+
+---
+
+(source_file
+  (rule
+    (RULE)
+    (expansions
+      (alias
+        (expr
+          (value
+            (RULE))
+          (NUMBER)
+          (NUMBER))))))
+
+==========
+Maybe Atom
+==========
+
+possible: expr [OP expr]
+
+---
+
+(source_file
+  (rule
+    (RULE)
+    (expansions
+      (alias
+        (expr
+          (value
+            (RULE)))
+        (expr
+          (maybe
+            (expansions
+              (alias
+                (expr
+                  (value
+                    (TERMINAL)))
+                (expr
+                  (value
+                    (RULE)))))))))))
+
+==============
+Template Usage
+==============
+
+usage: separate{NUMBER, ","}
+
+---
+
+(source_file
+  (rule
+    (RULE)
+    (expansions
+      (alias
+        (expr
+          (template_usage
+            (RULE)
+            (value
+              (TERMINAL))
+            (literal
+              (STRING))))))))
+
+============
+Nested Atoms
+============
+
+deep: [ a (b (c (d)+)*)? ]
+
+---
+
+(source_file
+  (rule
+    (RULE)
+    (expansions
+      (alias
+        (expr
+          (maybe
+            (expansions
+              (alias
+                (expr
+                  (value
+                    (RULE)))
+                (expr
+                  (atom
+                    (expansions
+                      (alias
+                        (expr
+                          (value
+                            (RULE)))
+                        (expr
+                          (atom
+                            (expansions
+                              (alias
+                                (expr
+                                  (value
+                                    (RULE)))
+                                (expr
+                                  (atom
+                                    (expansions
+                                      (alias
+                                        (expr
+                                          (value
+                                            (RULE))))))
+                                  (OP)))))
+                          (OP)))))
+                  (OP))))))))))

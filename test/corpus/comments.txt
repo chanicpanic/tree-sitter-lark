@@ -1,0 +1,43 @@
+=============
+Slash Comment
+=============
+
+// this is a comment
+
+---
+
+(source_file)
+
+============
+Hash Comment
+============
+
+# this is also a comment
+
+---
+
+(source_file)
+
+====================
+Comments Around Rule
+====================
+
+# has no effect
+start: h  // hello
+  | w  # world
+// EOF
+
+---
+
+(source_file
+  (rule
+    (RULE)
+    (expansions
+      (alias
+        (expr
+          (value
+            (RULE))))
+      (alias
+        (expr
+          (value
+            (RULE)))))))

@@ -1,0 +1,38 @@
+{
+  "$schema": "https://tree-sitter.github.io/tree-sitter/assets/schemas/config.schema.json",
+  "grammars": [
+    {
+      "name": "lark",
+      "camelcase": "Lark",
+      "title": "Lark",
+      "scope": "source.lark",
+      "file-types": [
+        "lark"
+      ],
+      "injection-regex": "^lark$",
+      "class-name": "TreeSitterLark"
+    }
+  ],
+  "metadata": {
+    "version": "0.1.0",
+    "license": "MIT",
+    "description": "Lark grammar for tree-sitter",
+    "authors": [
+      {
+        "name": "chanicpanic"
+      }
+    ],
+    "links": {
+      "repository": "https://github.com/chanicpanic/tree-sitter-lark"
+    }
+  },
+  "bindings": {
+    "c": true,
+    "go": true,
+    "node": true,
+    "python": true,
+    "rust": true,
+    "swift": true,
+    "zig": false
+  }
+}

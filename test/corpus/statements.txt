@@ -1,0 +1,197 @@
+======
+Ignore
+======
+
+%ignore WHITESPACE
+
+---
+
+(source_file
+  (ignore
+    (expansions
+      (alias
+        (expr
+          (value
+            (TERMINAL)))))))
+
+=============
+Import Common
+=============
+
+%import common.WS
+
+---
+
+(source_file
+  (import
+    (import_path
+      (name
+        (RULE))
+      (name
+        (TERMINAL)))))
+
+===============
+Import Relative
+===============
+
+%import .local.TERM
+
+---
+
+(source_file
+  (import
+    (import_path
+      (name
+        (RULE))
+      (name
+        (TERMINAL)))))
+
+================
+Import Long Path
+================
+
+%import .grammars.common.rules.end
+
+---
+
+(source_file
+  (import
+    (import_path
+      (name
+        (RULE))
+      (name
+        (RULE))
+      (name
+        (RULE))
+      (name
+        (RULE)))))
+
+============
+Import Alias
+============
+
+%import common.SIGNED_INT -> NUMBER
+
+---
+
+(source_file
+  (import
+    (import_path
+      (name
+        (RULE))
+      (name
+        (TERMINAL)))
+    (name
+      (TERMINAL))))
+
+===============
+Import Multiple
+===============
+
+%import .grammar (a, B, c, D)
+
+---
+
+(source_file
+  (multi_import
+    (import_path
+      (name
+        (RULE)))
+    (name_list
+      (name
+        (RULE))
+      (name
+        (TERMINAL))
+      (name
+        (RULE))
+      (name
+        (TERMINAL)))))
+
+=======
+Declare
+=======
+
+%declare COMMENT
+
+---
+
+(source_file
+  (declare
+    (name
+      (TERMINAL))))
+
+=============
+Override Rule
+=============
+
+%override number: NUMBER | /0x\w+/
+
+---
+
+(source_file
+  (override
+    (rule
+      (RULE)
+      (expansions
+        (alias
+          (expr
+            (value
+              (TERMINAL))))
+        (alias
+          (expr
+            (literal
+              (REGEXP))))))))
+
+=================
+Override Terminal
+=================
+
+%override NEW_LINE: "\r\n"
+
+---
+
+(source_file
+  (override
+    (terminal
+      (TERMINAL)
+      (expansions
+        (alias
+          (expr
+            (literal
+              (STRING))))))))
+
+===========
+Extend Rule
+===========
+
+%extend number: /0x\w+/
+
+---
+
+(source_file
+  (extend
+    (rule
+      (RULE)
+      (expansions
+        (alias
+          (expr
+            (literal
+              (REGEXP))))))))
+
+===============
+Extend Terminal
+===============
+
+%extend NEWLINE: "\r\n"
+
+---
+
+(source_file
+  (extend
+    (terminal
+      (TERMINAL)
+      (expansions
+        (alias
+          (expr
+            (literal
+              (STRING))))))))

@@ -1,0 +1,154 @@
+==============
+Empty Terminal
+==============
+
+TERM:
+
+---
+
+(source_file
+  (terminal
+    (TERMINAL)))
+
+====================
+Prioritized Terminal
+====================
+
+IMPORTANT.1: "!"
+
+---
+
+(source_file
+  (terminal
+    (TERMINAL)
+    (priority
+      (NUMBER))
+    (expansions
+      (alias
+        (expr
+          (literal
+            (STRING)))))))
+
+====================
+Negative Prioritized Terminal
+====================
+
+UNIMPORTANT.-100: "."
+
+---
+
+(source_file
+  (terminal
+    (TERMINAL)
+    (priority
+      (NUMBER))
+    (expansions
+      (alias
+        (expr
+          (literal
+            (STRING)))))))
+
+================
+Inlined Terminal
+================
+
+_HIDDEN: "hidden"
+
+---
+
+(source_file
+  (terminal
+    (TERMINAL)
+    (expansions
+      (alias
+        (expr
+          (literal
+            (STRING)))))))
+
+===============
+String Terminal
+===============
+
+HELLO: "hello"
+
+---
+
+(source_file
+  (terminal
+    (TERMINAL)
+    (expansions
+      (alias
+        (expr
+          (literal
+            (STRING)))))))
+
+==============
+Regex Terminal
+==============
+
+WORLD: /world/i
+
+---
+
+(source_file
+  (terminal
+    (TERMINAL)
+    (expansions
+      (alias
+        (expr
+          (literal
+            (REGEXP)))))))
+
+==============
+Range Terminal
+==============
+
+LETTER: "A".."Z"
+
+---
+
+(source_file
+  (terminal
+    (TERMINAL)
+    (expansions
+      (alias
+        (expr
+          (literal_range
+            (STRING)
+            (STRING)))))))
+
+==================
+Composite Terminal
+==================
+
+SOMETHING: ONE "two" /three/~0..3 (FOUR "5")?
+
+---
+
+(source_file
+  (terminal
+    (TERMINAL)
+    (expansions
+      (alias
+        (expr
+          (value
+            (TERMINAL)))
+        (expr
+          (literal
+            (STRING)))
+        (expr
+          (literal
+            (REGEXP))
+          (NUMBER)
+          (NUMBER))
+        (expr
+          (atom
+            (expansions
+              (alias
+                (expr
+                  (value
+                    (TERMINAL)))
+                (expr
+                  (literal
+                    (STRING))))))
+          (OP))))))
