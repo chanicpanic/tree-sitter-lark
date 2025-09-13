@@ -57,6 +57,10 @@
       "required": true,
       "types": [
         {
+          "type": "VBAR",
+          "named": true
+        },
+        {
           "type": "alias",
           "named": true
         }
@@ -522,6 +526,11 @@
     "named": false
   },
   {
+    "type": "COMMENT",
+    "named": true,
+    "extra": true
+  },
+  {
     "type": "NUMBER",
     "named": true
   },
@@ -547,6 +556,10 @@
   },
   {
     "type": "TERMINAL",
+    "named": true
+  },
+  {
+    "type": "VBAR",
     "named": true
   },
   {

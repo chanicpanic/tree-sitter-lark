@@ -1,5 +1,8 @@
+(COMMENT) @comment
+
 [
  (OP)
+ (VBAR)
  "->"
  "~"
  ".."

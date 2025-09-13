@@ -201,6 +201,7 @@ start: "hello" | "world" -> world
         (expr
           (literal
             (STRING))))
+      (VBAR)
       (alias
         (expr
           (literal
@@ -224,6 +225,7 @@ start: "hello"
         (expr
           (literal
             (STRING))))
+      (VBAR)
       (alias
         (expr
           (literal

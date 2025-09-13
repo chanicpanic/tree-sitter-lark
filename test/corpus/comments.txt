@@ -6,7 +6,8 @@ Slash Comment
 
 ---
 
-(source_file)
+(source_file
+  (COMMENT))
 
 ============
 Hash Comment
@@ -16,7 +17,8 @@ Hash Comment
 
 ---
 
-(source_file)
+(source_file
+  (COMMENT))
 
 ====================
 Comments Around Rule
@@ -30,6 +32,7 @@ start: h  // hello
 ---
 
 (source_file
+  (COMMENT)
   (rule
     (RULE)
     (expansions
@@ -37,7 +40,11 @@ start: h  // hello
         (expr
           (value
             (RULE))))
+      (COMMENT)
+      (VBAR)
       (alias
         (expr
           (value
-            (RULE)))))))
+            (RULE))))))
+  (COMMENT)
+  (COMMENT))

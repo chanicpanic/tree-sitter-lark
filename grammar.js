@@ -68,7 +68,7 @@ module.exports = grammar({
         $.alias,
         repeat(
           seq(
-            $._VBAR,
+            $.VBAR,
             $.alias,
           ),
         ),
@@ -248,7 +248,7 @@ module.exports = grammar({
 
     _NL: $ => NL_REGEX,
 
-    _VBAR: $ => token(
+    VBAR: $ => token(
       prec(
         1,
         seq(
@@ -266,7 +266,7 @@ module.exports = grammar({
 
     _WHITESPACE: $ => /[ \t]+/,
 
-    _COMMENT: $ => token(
+    COMMENT: $ => token(
       prec(
         1,
         new RustRegex(String.raw`\s*//[^\n]*|\s*#[^\n]*`),
@@ -278,7 +278,7 @@ module.exports = grammar({
 
   extras: $ => [
     $._WHITESPACE,
-    $._COMMENT,
+    $.COMMENT,
     $._BACKSLASH,
   ],
 });

@@ -137,6 +137,7 @@ Override Rule
           (expr
             (value
               (TERMINAL))))
+        (VBAR)
         (alias
           (expr
             (literal

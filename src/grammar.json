@@ -221,7 +221,7 @@
               "members": [
                 {
                   "type": "SYMBOL",
-                  "name": "_VBAR"
+                  "name": "VBAR"
                 },
                 {
                   "type": "SYMBOL",
@@ -726,7 +726,7 @@
       "type": "PATTERN",
       "value": "(\\r?\\n)+\\s*"
     },
-    "_VBAR": {
+    "VBAR": {
       "type": "TOKEN",
       "content": {
         "type": "PREC",
@@ -770,7 +770,7 @@
       "type": "PATTERN",
       "value": "[ \\t]+"
     },
-    "_COMMENT": {
+    "COMMENT": {
       "type": "TOKEN",
       "content": {
         "type": "PREC",
@@ -793,7 +793,7 @@
     },
     {
       "type": "SYMBOL",
-      "name": "_COMMENT"
+      "name": "COMMENT"
     },
     {
       "type": "SYMBOL",
