@@ -9,7 +9,9 @@
       "file-types": [
         "lark"
       ],
-      "highlights": "queries/highlights.scm",
+      "highlights": "queries/lark/highlights.scm",
+      "locals": "queries/lark/locals.scm",
+      "injections": "queries/lark/injections.scm",
       "injection-regex": "^lark$",
       "class-name": "TreeSitterLark"
     }
